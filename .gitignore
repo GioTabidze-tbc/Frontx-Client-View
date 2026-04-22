@@ -1,2 +1,5 @@
 node_modules/
 dist/
+
+# MCP credentials — do not commit
+.vscode/mcp.json
