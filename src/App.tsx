@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <AppHeader />
-      <Content id="main-content">
+      <Content id="main-content" className="content-with-rail">
         <MainContent />
       </Content>
     </>

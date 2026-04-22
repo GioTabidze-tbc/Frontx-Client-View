@@ -34,6 +34,23 @@ src/
 
 ---
 
+## Carbon Reference Links
+
+Use these when verifying component behaviour, props, or story source code before generating or editing Carbon UI code.
+
+| Resource | URL |
+|---|---|
+| Carbon React Storybook | https://react.carbondesignsystem.com/ |
+| UIShell SideNav stories (Storybook) | https://react.carbondesignsystem.com/?path=/story/components-ui-shell-sidenav--side-nav-rail-w-header |
+| UIShell SideNav story source (GitHub) | https://raw.githubusercontent.com/carbon-design-system/carbon/main/packages/react/src/components/UIShell/UIShell.SideNav.stories.js |
+| Carbon React GitHub (packages/react) | https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components |
+| Carbon Design System docs | https://carbondesignsystem.com/components/ |
+| Carbon Icons explorer | https://carbondesignsystem.com/elements/icons/library/ |
+
+> When a component story or prop is unclear, fetch the raw story source from the GitHub URL above before guessing.
+
+---
+
 ## Carbon Design System Rules
 
 ### Imports
@@ -71,7 +88,9 @@ src/
 - Icons used as buttons must be wrapped in `<HeaderGlobalAction aria-label="...">` or similar.
 
 ### Component patterns
-- Page shells use `<Header>`, `<HeaderName>`, `<SideNav>`, `<SideNavItems>` from Carbon.
+- Page shells use `<HeaderContainer>` + render props to wire `isSideNavExpanded` / `onClickSideNavExpand` — never useState for this.
+- Inside `HeaderContainer`, compose `<Header>`, `<HeaderName>`, `<SideNav isRail>`, `<SideNavItems>` from Carbon.
+- Rail SideNav: use `isRail` on `<SideNav>`; `<SideNavMenu renderIcon={…}>` for groups; `<SideNavLink renderIcon={…}>` for leaves; `<HeaderSideNavItems hasDivider>` inside SideNavItems when expanded (mobile only).
 - Navigation links use `<HeaderMenuItem>`, `<SideNavLink>`, `<SideNavMenu>`, `<SideNavMenuItem>`.
 - Page content uses `<Breadcrumb>` + `<BreadcrumbItem>` for wayfinding.
 - Cards/tiles use `<ClickableTile>`, `<Tile>`, or `<ExpandableTile>` — never custom `<div>` cards.

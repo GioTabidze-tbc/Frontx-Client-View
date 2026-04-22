@@ -1,5 +1,52 @@
 @use '@carbon/react';
 
+// Always show the hamburger (mobile and desktop)
+.cds--header__menu-toggle__hidden {
+  display: flex !important;
+}
+
+// Match the header's border-bottom on the sidenav right edge
+.cds--side-nav {
+  border-inline-end: 1px solid react.$border-subtle-00;
+}
+
+// Force the Carbon SideNav rail to stay at 3rem on desktop
+// (the --ux modifier otherwise forces 16rem)
+@media (min-width: 66rem) {
+  .cds--side-nav--ux.cds--side-nav--rail {
+    inline-size: 3rem;
+    overflow: hidden;
+
+    &:hover,
+    &:focus-within {
+      inline-size: 16rem;
+      overflow: visible;
+    }
+  }
+}
+
+// Offset main content to always clear the fixed 3rem icon rail
+.content-with-rail {
+  margin-inline-start: 3rem;
+}
+
+// Sticky breadcrumb bar — sits flush below the fixed 3rem header
+.breadcrumb-bar {
+  position: sticky;
+  top: 3rem; // height of Carbon header
+  z-index: 7999; // below header (8000) but above content
+  background-color: react.$background;
+  border-block-end: 1px solid react.$border-subtle-00;
+  padding-block: react.$spacing-04;
+  padding-inline: react.$spacing-05;
+
+  // Cancel the Content padding on all sides so the bar is edge-to-edge
+  // within the already-offset content area (margin-inline-start: 3rem)
+  margin-block-start: calc(-1 * react.$spacing-07); // pull up to remove top padding gap
+  margin-inline-start: calc(-1 * react.$spacing-07); // flush with sidenav right edge
+  margin-inline-end: calc(-1 * react.$spacing-07);   // flush with viewport right edge
+}
+
 .content-section {
   padding-block-start: react.$spacing-07;
   padding-block-end: react.$spacing-07;
@@ -27,4 +74,34 @@
 
 .tile-card p {
   color: react.$text-secondary;
+}
+
+.header-icon-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.header-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: react.$support-error;
+  pointer-events: none;
+
+  &--count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 16px;
+    height: 16px;
+    padding-inline: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    color: react.$text-on-color;
+  }
 }

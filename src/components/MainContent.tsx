@@ -41,19 +41,16 @@ const tiles = [
 
 const MainContent = () => {
   return (
-    <div className="content-section">
+    <>
+      <div className="breadcrumb-bar">
+        <Breadcrumb noTrailingSlash aria-label="Page breadcrumb">
+          <BreadcrumbItem href="/">მთავარი</BreadcrumbItem>
+          <BreadcrumbItem isCurrentPage>კლიენტის ხედვა</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+      <div className="content-section">
       <Grid>
-        <Column lg={16} md={8} sm={4}>
-          <div className="page-header">
-            <Breadcrumb noTrailingSlash aria-label="Page breadcrumb">
-              <BreadcrumbItem href="/">Home</BreadcrumbItem>
-              <BreadcrumbItem href="/dashboard">Dashboard</BreadcrumbItem>
-              <BreadcrumbItem isCurrentPage>Overview</BreadcrumbItem>
-            </Breadcrumb>
-          </div>
-        </Column>
-
-        <Column lg={16} md={8} sm={4}>
+        <Column lg={16} md={8} sm={4} className="page-header">
           <h2>Welcome to TBC Platform</h2>
           <p>Select a tile below to get started with the platform resources.</p>
         </Column>
@@ -71,8 +68,7 @@ const MainContent = () => {
           </Column>
         ))}
       </Grid>
-    </div>
-  );
+    </div>    </>  );
 };
 
 export default MainContent;
