@@ -1,0 +1,30 @@
+@use '@carbon/react';
+
+.content-section {
+  padding-block-start: react.$spacing-07;
+  padding-block-end: react.$spacing-07;
+}
+
+.page-header {
+  margin-block-end: react.$spacing-06;
+}
+
+.page-header h2 {
+  margin-block-end: react.$spacing-03;
+}
+
+.tile-group {
+  margin-block-start: react.$spacing-06;
+}
+
+.tile-card {
+  margin-block-end: react.$spacing-05;
+}
+
+.tile-card h4 {
+  margin-block-end: react.$spacing-03;
+}
+
+.tile-card p {
+  color: react.$text-secondary;
+}
