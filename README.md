@@ -1,4 +1,4 @@
-# TBC Frontx
+# TBC Frontx | Agent-mode UX Design
 
 Agent-mode UX design approach to the Frontx platform (POC).
 
