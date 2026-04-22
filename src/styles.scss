@@ -28,6 +28,7 @@
 // Offset main content to always clear the fixed 3rem icon rail
 .content-with-rail {
   margin-inline-start: 3rem;
+  padding: 0;
 }
 
 // Sticky breadcrumb bar — sits flush below the fixed 3rem header
@@ -42,14 +43,14 @@
 
   // Cancel the Content padding on all sides so the bar is edge-to-edge
   // within the already-offset content area (margin-inline-start: 3rem)
-  margin-block-start: calc(-1 * react.$spacing-07); // pull up to remove top padding gap
-  margin-inline-start: calc(-1 * react.$spacing-07); // flush with sidenav right edge
-  margin-inline-end: calc(-1 * react.$spacing-07);   // flush with viewport right edge
+  margin-block-start: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 .content-section {
-  padding-block-start: react.$spacing-07;
-  padding-block-end: react.$spacing-07;
+  padding-block-start: 0;
+  padding-block-end: 0;
 }
 
 .page-header {
@@ -76,6 +77,178 @@
   color: react.$text-secondary;
 }
 
+// ── Client Profile ──────────────────────────────────────────────
+
+.client-profile {
+  padding-block-start: react.$spacing-05;
+}
+
+.client-profile__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: react.$spacing-05;
+  margin-block-end: react.$spacing-05;
+}
+
+.client-profile__name-row {
+  display: flex;
+  align-items: center;
+  gap: react.$spacing-03;
+}
+
+.client-profile__name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.client-profile__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: react.$spacing-02;
+  border: none;
+  background: none;
+  color: react.$text-primary;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: react.$layer-hover-01;
+  }
+
+  &:focus-visible {
+    outline: 2px solid react.$focus;
+    outline-offset: 2px;
+  }
+}
+
+.client-profile__actions {
+  display: flex;
+  gap: react.$spacing-04;
+}
+
+// ── Expandable details with animation ───────────────────────────
+
+.client-profile__details {
+  display: grid;
+  transition: grid-template-rows 300ms ease, opacity 250ms ease;
+  overflow: hidden;
+}
+
+.client-profile__details--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.client-profile__details--closed {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.client-profile__details-inner {
+  display: flex;
+  gap: react.$spacing-07;
+  min-height: 0; // required for grid row animation
+  padding-inline: react.$spacing-05;
+  padding-block: 0;
+  overflow-x: auto;
+}
+
+.client-profile__photo {
+  flex-shrink: 0;
+  width: 160px;
+  height: 180px;
+  overflow: hidden;
+  padding-block: react.$spacing-05;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.client-profile__info-grid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: max-content max-content minmax(24rem, 1fr);
+  column-gap: react.$spacing-08;
+  padding-block: react.$spacing-05;
+  align-items: start;
+  min-width: 52rem;
+}
+
+.client-profile__info-col {
+  display: flex;
+  flex-direction: column;
+  gap: react.$spacing-04;
+  min-width: 0;
+}
+
+.client-profile__info-row {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  gap: react.$spacing-03;
+  font-size: 0.875rem;
+  color: react.$text-primary;
+
+  svg {
+    flex-shrink: 0;
+    color: react.$icon-secondary;
+  }
+
+  &--highlight svg {
+    color: react.$support-warning;
+  }
+
+  .cds--icon-button {
+    margin-inline-start: auto;
+  }
+}
+
+
+// ── Secondary ComboButton override ──────────────────────────────
+
+.combo-btn--secondary.cds--combo-button__container {
+  .cds--btn.cds--btn--primary {
+    background-color: #393939;
+
+    &:hover {
+      background-color: #474747;
+    }
+
+    &:active {
+      background-color: #6f6f6f;
+    }
+  }
+}
+
+// ── Tabs ────────────────────────────────────────────────────────
+
+.client-profile__tabs {
+  border-block-start: none;
+  background-color: react.$background;
+}
+
+.client-profile__details--closed + .client-profile__tabs {
+  margin-block-start: react.$spacing-05;
+}
+
+.client-profile__tabs .cds--tab-content {
+  background-color: react.$layer-01;
+  padding-block-start: react.$spacing-05;
+  min-height: calc(100vh - 22rem);
+}
+
+.client-profile__tab-label {
+  display: inline-flex;
+  align-items: center;
+  gap: react.$spacing-03;
+}
+
 .header-icon-badge-wrapper {
   position: relative;
   display: inline-flex;
@@ -83,8 +256,8 @@
 
 .header-badge {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -6px;
+  right: -6px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
