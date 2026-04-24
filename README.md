@@ -2,7 +2,7 @@
 
 Agent-mode UX design approach to the Frontx platform (POC).
 
-This project is a React + TypeScript + Vite single-page application that uses Carbon reusable React components and Carbon design tokens. It is designed to be developed with VS Code Copilot in agent mode, plus Carbon MCP tools and Carbon skills.
+This project uses OSS IBM Carbon Design System. It is designed to be developed with VS Code Copilot in agent mode, plus Carbon MCP tools and Carbon skills.
 
 ## POC Result
 
