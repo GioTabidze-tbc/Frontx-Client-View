@@ -1,13 +1,13 @@
 import { Content } from '@carbon/react';
 import AppHeader from './components/AppHeader';
-import MainContent from './components/MainContent';
+import KanbanBoard from './components/KanbanBoard';
 
 function App() {
   return (
     <>
       <AppHeader />
       <Content id="main-content" className="content-with-rail">
-        <MainContent />
+        <KanbanBoard />
       </Content>
     </>
   );

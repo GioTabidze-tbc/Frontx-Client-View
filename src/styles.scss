@@ -29,6 +29,8 @@
 .content-with-rail {
   margin-inline-start: 3rem;
   padding: 0;
+  background-color: react.$background;
+  min-block-size: 100vh;
 }
 
 // Sticky breadcrumb bar — sits flush below the fixed 3rem header
@@ -75,6 +77,96 @@
 
 .tile-card p {
   color: react.$text-secondary;
+}
+
+// ── Add Todo SidePanel ──────────────────────────────────────────
+
+.c4p--side-panel .cds--layer-two {
+  display: flex;
+  flex-direction: column;
+  gap: react.$spacing-04;
+}
+
+// ── Todo List ───────────────────────────────────────────────────
+
+.todo-grid {
+  padding-block-start: react.$spacing-06;
+  padding-inline: react.$spacing-05;
+}
+
+.todo-header {
+  margin-block-end: react.$spacing-06;
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: react.$spacing-04;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-block-end: react.$spacing-02;
+  }
+}
+
+.todo-subtitle {
+  color: react.$text-secondary;
+}
+
+.todo-empty {
+  p {
+    color: react.$text-secondary;
+  }
+}
+
+.todo-list-panel {
+  background-color: react.$background;
+  padding: react.$spacing-05;
+  border-radius: 0;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: react.$spacing-03;
+}
+
+.todo-item {
+  padding: react.$spacing-04;
+  background-color: react.$layer-01 !important;
+}
+
+.todo-item--done {
+  .cds--checkbox-label {
+    text-decoration: line-through;
+    color: react.$text-disabled;
+  }
+}
+
+.todo-item-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .cds--form-item {
+    flex: 1;
+  }
+}
+
+.todo-item-actions {
+  display: flex;
+  align-items: center;
+  gap: react.$spacing-02;
+  flex-shrink: 0;
+}
+
+.todo-item-desc {
+  margin-block-start: react.$spacing-02;
+  padding-inline-start: 1.5rem; // aligns under checkbox label
+  color: react.$text-secondary;
+  font-size: 0.875rem;
 }
 
 // ── Client Profile ──────────────────────────────────────────────
@@ -276,5 +368,277 @@
     font-weight: 600;
     line-height: 1;
     color: react.$text-on-color;
+  }
+}
+
+// ── Kanban Board ────────────────────────────────────────────────
+
+.kanban-page-header {
+  background-color: react.$background;
+  border-block-end: 1px solid react.$border-subtle-00;
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-inline: react.$spacing-06;
+    padding-block-start: react.$spacing-06;
+    margin-block-end: react.$spacing-06;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-block-end: react.$spacing-02;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-04;
+
+    .cds--btn {
+      margin-inline-start: 0;
+    }
+  }
+
+  &__subtitle {
+    color: react.$text-secondary;
+  }
+}
+
+.kanban-board-section {
+  padding: react.$spacing-06;
+  background-color: react.$background;
+}
+
+// ── Kanban Toolbar ──────────────────────────────────────────────
+
+// TableToolbar doesn't forward className to its <section> root,
+// so we scope via the parent .kanban-page-header instead.
+.kanban-page-header .cds--table-toolbar {
+  background-color: react.$background;
+  border-block-start: none;
+  border-block-end: none;
+  margin-block-end: 0;
+}
+
+.kanban-toolbar {
+  display: flex;
+  align-items: center;
+  gap: react.$spacing-03;
+  padding-block: react.$spacing-05;
+  padding-inline: react.$spacing-06;
+  margin-block-end: 0;
+  border: none;
+  background-color: react.$background;
+
+  &.cds--table-toolbar,
+  .cds--table-toolbar,
+  .cds--toolbar-content {
+    border: none;
+    background-color: react.$background;
+  }
+
+  .cds--toolbar-content {
+    inline-size: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-03;
+  }
+
+  .cds--toolbar-search-container-expandable,
+  .cds--toolbar-search-container-persistent {
+    inline-size: auto;
+    flex: 1 1 22rem;
+    min-inline-size: 16rem;
+  }
+
+  .cds--toolbar-search {
+    inline-size: 100%;
+    max-inline-size: none;
+  }
+
+  .cds--search {
+    block-size: 2rem;
+  }
+
+  &__filters {
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-03;
+    flex: 0 0 auto;
+
+    .kanban-toolbar__date-picker {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      .cds--date-picker,
+      .cds--date-picker-container,
+      .cds--date-picker-input__wrapper {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .kanban-toolbar__date-picker-input--hidden {
+        inline-size: 1px;
+        block-size: 1px;
+        padding: 0;
+        border: 0;
+      }
+    }
+
+    .kanban-toolbar__menu-filter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cds--list-box__menu {
+      inline-size: 12rem;
+    }
+  }
+}
+
+.kanban-board {
+  display: flex;
+  gap: react.$spacing-05;
+  align-items: stretch;
+  overflow-x: auto;
+  padding-block-end: react.$spacing-06;
+}
+
+.kanban-column {
+  flex: 1;
+  min-width: 272px;
+  background-color: react.$layer-01;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-03;
+    padding: react.$spacing-04 react.$spacing-04 react.$spacing-03;
+  }
+
+  &__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: react.$text-secondary;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    padding: 0 react.$spacing-03 react.$spacing-04;
+    display: flex;
+    flex-direction: column;
+    gap: react.$spacing-03;
+    min-height: 12rem;
+  }
+}
+
+.kanban-card {
+  padding: react.$spacing-04 !important;
+  background-color: react.$layer-02 !important;
+  cursor: default;
+  transition: background-color 70ms ease;
+
+  &:hover {
+    background-color: react.$layer-hover-02 !important;
+
+    .kanban-card__menu {
+      opacity: 1;
+    }
+  }
+
+  &__menu {
+    opacity: 0;
+    transition: opacity 120ms ease;
+    flex-shrink: 0;
+
+    // Suppress focus ring on mouse click — keyboard nav still shows it
+    .cds--overflow-menu:focus:not(:focus-visible) {
+      outline: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: react.$spacing-03;
+    margin-block-end: react.$spacing-03;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: react.$text-primary;
+    line-height: 1.4;
+    flex: 1;
+    margin: 0;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: react.$spacing-02;
+    margin-block-end: react.$spacing-04;
+
+    // Georgian script has taller ascenders — reset line-height so
+    // text sits centered inside the Carbon sm tag capsule
+    .cds--tag__label {
+      line-height: 1.2;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-02;
+    color: react.$text-secondary;
+    font-size: 0.75rem;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: react.$spacing-03;
+  }
+
+  &__flag {
+    color: react.$support-error;
+    flex-shrink: 0;
+  }
+
+  &__assignee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    color: react.$text-on-color;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    flex-shrink: 0;
   }
 }
